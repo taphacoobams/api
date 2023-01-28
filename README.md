@@ -1,4 +1,4 @@
-# sipmle-api-nodejs-sqlite
+# simple-api-nodejs-sqlite
 This is a simple API using node.js and SQLite3 with express and multer
 
 Run the following comands to use it :
