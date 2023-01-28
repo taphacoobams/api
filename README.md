@@ -6,7 +6,7 @@ Run the following comands to use it :
 ```
 mkdir api-node-folder
 cd api-node-folder
-nmp init
+npm init
 npm install express sqlite3 multer md5
 node .\main.js 
 ```
