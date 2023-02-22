@@ -1,15 +1,17 @@
 const db = require("../models/db.js")
 const md5 = require('md5')
-//GET '/user'
-const getAllUser = (req, res, next)=>{
+//GET '/botaniste'
+const getAllBotaniste = (req, res, next)=>{
     //res.send('Hello word')
     try{
-            db.all('SELECT * FROM utilisateur', [], (err, data) => {  ///////////////////db.get() db.all() db.each()
-              if(err) return res.json({status:1000, success:false, error:err})
+            db.all('SELECT * FROM botaniste', [], (err, data) => {  ///////////////////db.get() db.all() db.each()
+                console.log(data)
+                console.log(data.length)
+                if(err) return res.json({status:1000, success:false, error:err})
               if(data.length<1) return res.json({status:3000, success:false, error:err})
 
               let name = data.name;
-              console.log(data)            /// data.name ne fonctionne pas (a resoudre)
+                          /// data.name ne fonctionne pas (a resoudre)
     
               //return res.json({status:200, data:data, success:true})
               //return res.json({data:data})
@@ -20,13 +22,13 @@ const getAllUser = (req, res, next)=>{
     }
 };
 
-//POST '/user'
-const newUser = (req, res, next) => {
+//POST '/botaniste'
+const newBotaniste = (req, res, next) => {
     const requestBody = req.body;
     console.log("url "+req.url);
     console.log("prenom "+requestBody.prenom);
-    db.run('INSERT INTO User (prenom, nom, email, mdp, telephone) VALUES (?,?,?,?,?)',
-        [requestBody.prenom, requestBody.nom,requestBody.email, md5(requestBody.mdp),requestBody.telephone],
+    db.run('INSERT INTO Botaniste (firtname, lastname, geolocalisation, plante) VALUES (?,?,?,?)',
+        [requestBody.firtname, requestBody.lastname,requestBody.geolocalisation, requestBody.plante],
         function (err, result) {
             if (err) {
                 res.status(400).json({ "error": err.message })
@@ -40,6 +42,6 @@ const newUser = (req, res, next) => {
 
 //export controller functions
 module.exports = {
-    getAllUser, 
-    newUser
+    getAllBotaniste, 
+    newBotaniste
 };

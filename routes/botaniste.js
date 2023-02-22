@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const userController = require('../controllers/user');
+const botanisteController = require('../controllers/botaniste');
 
 const app = require('express')()
 const bodyParser = require('body-parser')
@@ -10,7 +10,7 @@ const upload = multer() // for parsing multipart/form-data
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencode
 
-router.get('/user', userController.getAllUser);
-router.post('/user', upload.array(), userController.newUser);
+router.get('/botaniste', botanisteController.getAllBotaniste);
+router.post('/botaniste',  upload.array(), botanisteController.newBotaniste);
 
 module.exports = router; // export to use in main.js
